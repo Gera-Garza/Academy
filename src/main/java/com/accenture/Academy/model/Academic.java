@@ -25,6 +25,9 @@ public class Academic {
     @Column(name="update_date")
     private Date uDate; //update date
 
+    @OneToMany
+    Course course;
+
 
     public int getId() {
         return id;
