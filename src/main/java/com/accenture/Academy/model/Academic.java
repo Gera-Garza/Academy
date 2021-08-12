@@ -1,13 +1,17 @@
 package com.accenture.academy.model;
 
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="academic")
 public class Academic {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "first_name")
     private String fName;
@@ -25,9 +29,23 @@ public class Academic {
     @Column(name="update_date")
     private Date uDate; //update date
 
-    @OneToMany
-    Course course;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ac_id",referencedColumnName = "id")
+    List<Course> courses = new ArrayList<>();
 
+    public Academic() {
+    }
+
+    public Academic(String fName, String lName, int phone, String email, Date birthday, String resume, Date cDate, Date uDate) {
+        this.fName = fName;
+        this.lName = lName;
+        this.phone = phone;
+        this.email = email;
+        this.birthday = birthday;
+        this.resume = resume;
+        this.cDate = cDate;
+        this.uDate = uDate;
+    }
 
     public int getId() {
         return id;

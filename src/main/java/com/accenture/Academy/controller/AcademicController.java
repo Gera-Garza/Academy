@@ -13,6 +13,7 @@ public class AcademicController {
     @Autowired
     private AcademyRepository academyRepository;
 
+
     @PostMapping()
     public @ResponseBody Academic createAcademic(@RequestBody Academic newAcademic){
         return academyRepository.save(newAcademic);
@@ -43,4 +44,6 @@ public class AcademicController {
         academyRepository.delete(academic);
         return academic.getId();
     }
+
+
 }

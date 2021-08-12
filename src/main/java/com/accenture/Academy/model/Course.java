@@ -7,7 +7,7 @@ import java.util.Date;
 @Table(name="course")
 public class Course {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String description;
