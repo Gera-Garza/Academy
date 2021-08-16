@@ -14,6 +14,8 @@ public class Course {
     private String lenguage;
     @Column(name="estimated_date")
     private Date estimatedDate;
+    private double timeDedicated;
+    private String status;
 
     public int getId() {
         return id;

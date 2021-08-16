@@ -6,6 +6,7 @@ import com.accenture.academy.repository.AcademyRepository;
 import com.accenture.academy.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +28,8 @@ public class CourseController {
     }
 
     @GetMapping(path = "/{language}")
-    @Query("select * from courses where language = %:language")
-    public @ResponseBody Course getCourseByLanguage(@PathVariable String language) {
+    @Query("select * from courses where language = :language")
+    public @ResponseBody Course getCourseByLanguage(@Param("language") @PathVariable String language) {
         return courseRepository.findByLanguage(language);
     }
 
