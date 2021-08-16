@@ -11,13 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(path = "/academic")
+@RequestMapping(path = "/course")
 public class CourseController {
 
     @Autowired
     private CourseRepository courseRepository;
 
-    @PostMapping(path = "/course")
+    @PostMapping()
     public @ResponseBody Course createCourse(@RequestBody Course newCourse){
         return courseRepository.save(newCourse);
     }
@@ -33,11 +33,12 @@ public class CourseController {
         return courseRepository.findByLanguage(language);
     }
 
-    @GetMapping(path = "/{id}/course")
+    //add to academic
+   /* @GetMapping(path = "/{id}/course")
     @Query("select * from courses where ac_id = id")
     public @ResponseBody Iterable<Course> getAcademicCourses(){
             return courseRepository.findAll();
-    }
+    }*/
 
     @PutMapping(path = "/{id}")
     public @ResponseBody Course updateCourse(@PathVariable Integer id, @RequestBody Course updateCourse) {
