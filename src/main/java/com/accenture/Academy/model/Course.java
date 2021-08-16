@@ -2,6 +2,7 @@ package com.accenture.academy.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name="course")
@@ -15,6 +16,8 @@ public class Course {
     @Column(name="estimated_date")
     private Date estimatedDate;
 
+    @OneToMany(mappedBy = "course")
+    Set<Enrolled> academics;
     public int getId() {
         return id;
     }

@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="academic")
@@ -29,9 +30,8 @@ public class Academic {
     @Column(name="update_date")
     private Date uDate; //update date
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ac_id",referencedColumnName = "id")
-    List<Course> courses = new ArrayList<>();
+    @OneToMany(mappedBy = "academic" , cascade = CascadeType.ALL)
+    Set<Enrolled> coursesEnrolled;
 
     public Academic() {
     }
