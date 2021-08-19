@@ -19,6 +19,13 @@ public class Enrolled {
     double timeDedicated;
     String status;
 
+    public Enrolled(int id, Academic academic, Course course, double timeDedicated, String status) {
+        this.id = id;
+        this.academic = academic;
+        this.course = course;
+        this.timeDedicated = timeDedicated;
+        this.status = status;
+    }
 
     public int getId() {
         return id;

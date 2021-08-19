@@ -10,12 +10,9 @@ import org.springframework.stereotype.Repository;
 public interface CourseRepository extends CrudRepository<Course,Integer> {
 
 
-    public Course findById(int id);
 
-    public Course findByLanguage(String language);
-
-    @Query("Select * from course c where c.language = language")
-    public Course findByEmailAccount(@Param("langauge") String langauge);
+    @Query("select * from courses where language = :language")
+    public Course findByLanguage(@Param("language") String language);
 
 
 }
