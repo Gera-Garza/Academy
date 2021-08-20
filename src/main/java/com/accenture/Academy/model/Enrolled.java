@@ -16,10 +16,13 @@ public class Enrolled {
     @JoinColumn(name = "course_id")
     Course course;
 
-    double timeDedicated;
+    Integer timeDedicated;
     String status;
 
-    public Enrolled(int id, Academic academic, Course course, double timeDedicated, String status) {
+    public Enrolled() {
+    }
+
+    public Enrolled(int id, Academic academic, Course course, Integer timeDedicated, String status) {
         this.id = id;
         this.academic = academic;
         this.course = course;
@@ -51,11 +54,11 @@ public class Enrolled {
         this.course = course;
     }
 
-    public double getTimeDedicated() {
+    public Integer getTimeDedicated() {
         return timeDedicated;
     }
 
-    public void setTimeDedicated(double timeDedicated) {
+    public void setTimeDedicated(Integer timeDedicated) {
         this.timeDedicated = timeDedicated;
     }
 

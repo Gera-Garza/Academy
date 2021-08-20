@@ -11,7 +11,7 @@ public interface CourseRepository extends CrudRepository<Course,Integer> {
 
 
 
-    @Query("select * from courses where language = :language")
+    @Query(value = "select * from courses where language = :language", nativeQuery = true)
     public Course findByLanguage(@Param("language") String language);
 
 

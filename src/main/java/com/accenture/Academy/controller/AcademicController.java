@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/academic")
 public class AcademicController {
@@ -30,16 +32,16 @@ public class AcademicController {
         return academicService.getALl();
     }
 
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "/{id}")
     public @ResponseBody Academic getAcademic(@PathVariable Integer id) {
         return academicService.getAcademic(id);
     }
 
-    @PutMapping(path = "{id}")
+    @PutMapping(path = "/{id}")
     public @ResponseBody Academic updateAcademic(@PathVariable Integer id, @RequestBody Academic updateAcademic) {
         return academicService.updateAcademic(id,updateAcademic);
     }
-    @DeleteMapping(path = "{id}")
+    @DeleteMapping(path = "/{id}")
     public @ResponseBody Integer deleteAcademic(@PathVariable Integer id) {
         return academicService.deleteAcademic(id);
     }
@@ -47,20 +49,21 @@ public class AcademicController {
    //enrolled
 
     //post create
-    @PostMapping(path = "{academicId}/Course/{courseId}")
-     public @ResponseBody Enrolled createEnrolled(@RequestBody Enrolled newEnrolled){
-        return enrolledService.createEnrolled(newEnrolled);
+    @PostMapping(path = "/{academicId}/courses/{courseId}")
+     public @ResponseBody Enrolled createEnrolled(@PathVariable Integer academicId,@PathVariable Integer courseId, @RequestBody Enrolled newEnrolled){
+        return enrolledService.createEnrolled(newEnrolled.getId(),newEnrolled.getStatus(),newEnrolled.getTimeDedicated(),academicId,courseId);
     }
 
     //get all courses from given academic
-    @GetMapping(path = "{academicId}/Course")
-    public @ResponseBody Enrolled getAll(@PathVariable Integer id){
-        return (Enrolled) enrolledService.getAll(id);
+    @GetMapping(path = "/{academicId}/courses")
+    public @ResponseBody List<Enrolled> getAll(@PathVariable Integer academicId){
+
+        return enrolledService.getAll(academicId);
     }
 
     //put update an enrolled
     @PutMapping(path = "/{academicId}/courses/{courseId}")
-    public @ResponseBody Enrolled updateEnrolled(@PathVariable Integer academicId,@PathVariable Integer courseId,@ResponseBody Enrolled newEnrolled){
+    public @ResponseBody Enrolled updateEnrolled(@PathVariable Integer academicId,@PathVariable Integer courseId,@RequestBody Enrolled newEnrolled){
         return enrolledService.updateEnrolled(academicId,courseId,newEnrolled);
     }
 

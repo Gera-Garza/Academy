@@ -6,24 +6,34 @@ import com.accenture.academy.model.Enrolled;
 import com.accenture.academy.repository.AcademyRepository;
 import com.accenture.academy.repository.EnrolledRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
+@Service
 public class EnrolledServiceImp implements EnrolledService{
 
     @Autowired
     private EnrolledRepository enrolledRepository;
 
 
+    /*@Override
+    public Iterable<Enrolled> getALl(Integer id) {
+        return enrolledRepository.findAllById(Collections.singleton(id));
+    }*/
 
     @Override
-    public Enrolled createEnrolled(Integer id,Integer academicId, Integer courseId, String status, Integer time, ) {
-        Enrolled enrolled = new Enrolled(id,academicId,courseId,status,time);
+    public Enrolled createEnrolled(Integer id, String status, Integer time, Integer academicId, Integer courseId) {
+        enrolledRepository.createEnrolled(id,status,time,academicId,courseId);
+        return enrolledRepository.findById(id).get();
     }
 
     @Override
-    public Iterable<Enrolled> getALl(Integer id) {
-        return enrolledRepository.findAllById(Collections.singleton(id));
+    public List<Enrolled> getAll(Integer id) {
+        List<Enrolled> test = enrolledRepository.getALl(id);
+        return test;
     }
 
     @Override
